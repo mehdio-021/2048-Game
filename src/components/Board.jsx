@@ -73,14 +73,26 @@ const BoardView = () => {
   useEvent("keydown", handleKeyDown);
 
   useEffect(() => {
+    const preventDefault = (event) => {
+      if (event.touches.length > 1) {
+        event.preventDefault();
+      }
+    };
+
     window.addEventListener("touchstart", handleTouchStart);
     window.addEventListener("touchmove", handleTouchMove);
     window.addEventListener("touchend", handleTouchEnd);
+
+    document.addEventListener('touchmove', preventDefault, { passive: false });
+    document.addEventListener('touchstart', preventDefault, { passive: false });
 
     return () => {
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("touchend", handleTouchEnd);
+
+      document.removeEventListener('touchmove', preventDefault);
+      document.removeEventListener('touchstart', preventDefault);
     };
   }, [touchStart, touchEnd]);
 
