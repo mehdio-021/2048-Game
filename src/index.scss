@@ -14,7 +14,6 @@
     align-items: center;
     font-family: "Clear Sans", sans-serif;
     font-size: 21px;
-    overflow: hidden;
   }
   
   .text {
@@ -26,7 +25,7 @@
   
   .board {
     order: 1;
-    max-width: 440px;
+    width: 440px;
     height: 440px;
     padding: 5px;
     background-color: #57407c;
